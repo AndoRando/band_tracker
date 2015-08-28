@@ -1,0 +1,32 @@
+<h2><%= @band.name %> Details</h2>
+
+<!-- List of venues -->
+
+<% if @band.venues.any?() %>
+
+  <% @band.venues.each do |venue| %>
+    <li><%= venue.name() %></li>
+  <% end %>
+
+<% else %>
+
+  <p>This band hasn't played anywhere yet, but you can add a venue below!</p>
+
+<% end %>
+
+<!-- Update name -->
+
+<h3>Update the band's name:</h3>
+
+<form action="/bands/<%= @band.id() %>" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_method" value="patch">
+    <input type="text" name="update_band_name">
+    <button type="submit" class="btn">Update Name</button>
+  </div>
+</form>
+
+<!-- Link block -->
+
+<a href="/">Go back home</a>
+<a href="/bands">Back to bands list</a>
