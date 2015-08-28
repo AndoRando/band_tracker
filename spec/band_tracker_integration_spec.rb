@@ -28,3 +28,22 @@ describe("deleting a band", {:type => :feature}) do
     expect(page).to have_content("All Bands")
   end
 end
+
+describe("adding a venue", {:type => :feature}) do
+  it("allows the user to add a venue") do
+    test_venue = Venue.create({:name => "Crystal Ballroom"})
+    visit("/")
+    fill_in("venue_name", :with => "Crystal Ballroom")
+    click_button("Add Venue")
+    expect(page).to have_content("Band Tracker")
+  end
+
+  it("allows the user to add a venue directly to a band") do
+    test_band = Band.create({:name => "Coheed and Cambria"})
+    test_venue = Venue.create({:name => "Crystal Ballroom"})
+    visit("/bands/#{test_band.id()}")
+    fill_in("venue_name", :with => "Crystal Ballroom")
+    click_button("Add Venue")
+    expect(page).to have_content("Crystal Ballroom")
+  end
+end

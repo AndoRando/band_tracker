@@ -37,3 +37,8 @@ delete("/bands/:id") do
 end
 
 ### Venues
+
+post("/venues") do
+  @venue = Venue.create({:name => params.fetch("venue_name")})
+  redirect back
+end
