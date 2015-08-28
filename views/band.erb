@@ -26,6 +26,15 @@
   </div>
 </form>
 
+<!-- Delete band -->
+
+<form action="/bands/<%= @band.id() %>" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn">Delete Band</button>
+  </div>
+</form>
+
 <!-- Link block -->
 
 <a href="/">Go back home</a>

@@ -19,3 +19,12 @@ describe("updating a band", {:type => :feature}) do
     expect(page).to have_content("The Prize Fighter Inferno")
   end
 end
+
+describe("deleting a band", {:type => :feature}) do
+  it("allows the user to delete a band") do
+    test_band = Band.create({:name => "Coheed and Cambria"})
+    visit("/bands/#{test_band.id()}")
+    click_button("Delete Band")
+    expect(page).to have_content("All Bands")
+  end
+end
