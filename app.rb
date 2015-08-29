@@ -21,12 +21,19 @@ end
 
 get("/bands/:id") do
   @band = Band.find(params.fetch("id").to_i())
+  @venues = Venue.all()
   erb(:band)
 end
 
-patch("/bands/:id") do
+patch("/bands/:id/name") do
   @band = Band.find(params.fetch("id").to_i())
   @band.update({:name => params.fetch("update_band_name")})
+  redirect back
+end
+
+patch("/bands/:id/venues") do
+  @band = Band.find(params.fetch("id").to_i())
+  @band.update({:venue_ids => params.fetch("venue_ids")})
   redirect back
 end
 
